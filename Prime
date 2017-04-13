@@ -1,0 +1,31 @@
+Given an even number ( greater than 2 ), return two prime numbers whose sum will be equal to given number.
+
+
+Solution:
+
+
+vector<int> Solution::primesum(int A) {
+ int i,j,k;
+ k = A;
+ vector<bool> prime;
+ vector<int> sol;
+ //memset(prime,true,sizeof(prime));
+ for(i=0;i<A;i++){
+     prime.push_back(true);
+ }
+ for( i = 2 ; i*i<=A ; i++){
+     if(prime[i]==true){
+         for(j=2*i;j<=A;j+=i){
+             prime[j]=false;
+         }
+     }
+ }
+ 
+  for(i =2 ; i <= A ; i++){
+     if(prime[i]==true && prime[A-i]==true){
+         sol.push_back(i);
+         sol.push_back(A-i);
+         return sol;
+     }
+ }
+}
